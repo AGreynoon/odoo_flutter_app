@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:odoo/navdrawer.dart';
 import 'package:odoo/respartnerpage.dart';
 import 'package:odoo_rpc/odoo_rpc.dart';
 
-final orpc = OdooClient('http://http://31.220.95.199:8069/');
+final orpc = OdooClient('http://31.220.95.199:8069/');
+
 String name = '';
 String pass = '';
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        drawer: Drawer(),
+        drawer: const NavDrawer(),
         appBar: AppBar(
           title: const Text(_title),
         ),
@@ -41,11 +43,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController passwordController = TextEditingController();
   int count = 0;
 
+
   void _incrementCounter() async{
+
     setState(() {
+
       count++;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,7 +62,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(10),
             child: const Text('Odoo Api with Flutter By Marouf',
-            style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 30),)
+            style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.w500,
+                fontSize: 30),)
       ),
             Container(
               alignment: Alignment.center,
@@ -93,7 +102,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 print(passwordController.text);
                 count = 0;
                 try{
-                  final x = orpc.authenticate("test_wan", nameController.text, passwordController.text);
+                  final x = orpc.authenticate("wan1", nameController.text, passwordController.text);
+                  //final res = await orpc.callRPC('/web/session/modules', 'call', {});
                   name = nameController.text;
                   pass = passwordController.text;
                   count = 0;
@@ -103,7 +113,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   print('--------------------------------- catch');
                 }
                 finally{
-                  print('aefaefwaef---------dawdawda------awdadaw-adwada');
+                  print('wertyuioxcvbnm,dfghjk---------cvbnmhjkcvbn---vbn');
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ThirdRoute()));
                 }
               },

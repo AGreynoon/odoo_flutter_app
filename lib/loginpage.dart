@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:odoo/respartnerpage.dart';
 import 'package:odoo_rpc/odoo_rpc.dart';
 
-final orpc = OdooClient('http://http://31.220.95.199:8069/');
+final orpc = OdooClient('http://31.220.95.199:8069/');
 String name = '';
 String pass = '';
 

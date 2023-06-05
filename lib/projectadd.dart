@@ -30,20 +30,19 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
-  final orpc = OdooClient('http://http://31.220.95.199:8069/');
-  TextEditingController NameProjectController = TextEditingController();
+  final orpc = OdooClient('http://31.220.95.199:8069/');
+  TextEditingController nameProjectController = TextEditingController();
 
   Future<dynamic> check() async{
-    await orpc.authenticate('test_wan', name, pass);
+    await orpc.authenticate('wan1', name, pass);
   }
 
-  Future<dynamic> CreateProject(String nameproject) async{
+  Future<dynamic> createProject(String nameProject) async{
     return orpc.callKw({
       'model': 'project.project',
       'method': 'create',
       'args': [{
-        'name': nameproject,
+        'name': nameProject,
       }],
       'kwargs': {},
     });
@@ -68,7 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           Container(
             padding: const EdgeInsets.all(10),
             child: TextField(
-              controller: NameProjectController,
+              controller: nameProjectController,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Enter Project Name'
@@ -81,10 +80,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               child: ElevatedButton(
                 child: const Text('Create Project'),
                 onPressed: () async{
-                  nameProject = NameProjectController.text;
+                  nameProject = nameProjectController.text;
                   await check();
-                  await CreateProject(nameProject);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => FiveRoute()));
+                  await createProject(nameProject);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => fiveRoute()));
                 },
               )
           ),
