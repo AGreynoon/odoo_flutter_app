@@ -3,7 +3,8 @@ import 'package:odoo/navdrawer.dart';
 import 'package:odoo/respartnerpage.dart';
 import 'package:odoo_rpc/odoo_rpc.dart';
 
-final orpc = OdooClient('http://31.220.95.199:8069/');
+//Enter your URL here
+final orpc = OdooClient('URL');
 
 String name = '';
 String pass = '';
@@ -102,7 +103,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 print(passwordController.text);
                 count = 0;
                 try{
-                  final x = orpc.authenticate("wan1", nameController.text, passwordController.text);
+                  //Enter your database name here
+                  final x = orpc.authenticate("database_name", nameController.text, passwordController.text);
                   //final res = await orpc.callRPC('/web/session/modules', 'call', {});
                   name = nameController.text;
                   pass = passwordController.text;
